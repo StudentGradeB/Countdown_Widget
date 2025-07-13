@@ -7,11 +7,12 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:900" rel="stylesheet">
   <title>Countdown Timer - Dark</title>
   <style>
+    /* ← Dark BG + centered container (from Code 2) */
     html, body {
       margin: 0;
       padding: 0;
-      background-color: #1e1e1e; /* True dark background */
-      color: #fff;
+      background-color: #1e1e1e;
+      color: #ffffff;
       font-family: 'Lato', sans-serif;
       height: 100%;
       width: 100%;
@@ -20,15 +21,18 @@
       align-items: center;
     }
 
+    /* ← Sizing/scale logic (from Code 1) */
     #widget-container {
-      transform: scale(0.9); /* Adjust this value to resize widget */
+      transform: scale(0.9);       /* adjust this value for overall widget size */
       transform-origin: top center;
     }
 
+    /* ← Same timer layout from both */
     #timer {
       text-align: center;
       text-transform: uppercase;
       letter-spacing: 2px;
+      font-size: 0.7em;            /* ensure consistent compactness */
     }
 
     .days, .hours, .minutes, .seconds {
@@ -39,15 +43,16 @@
       margin: 5px;
     }
 
-    .days { background: #EF2F3C; color: #ffffff; }
-    .hours { background: #333333; color: #ffffff; }
-    .minutes { background: #276FBF; color: #ffffff; }
-    .seconds { background: #F0A202; color: #ffffff; }
+    .days   { background: #EF2F3C; }
+    .hours  { background: #333333; }
+    .minutes{ background: #276FBF; }
+    .seconds{ background: #F0A202; }
 
     .numbers {
       font-family: 'Montserrat', sans-serif;
       font-size: 3em;
       margin-bottom: 5px;
+      color: #ffffff;
     }
   </style>
 </head>
@@ -55,16 +60,16 @@
   <div id="widget-container">
     <div id="timer">
       <div class="days">
-        <div id="days" class="numbers">0</div>days
+        <div id="days"    class="numbers">0</div>days
       </div>
       <div class="hours">
-        <div id="hours" class="numbers">0</div>hours
+        <div id="hours"  class="numbers">0</div>hours
       </div>
       <div class="minutes">
-        <div id="minutes" class="numbers">0</div>minutes
+        <div id="minutes"class="numbers">0</div>minutes
       </div>
       <div class="seconds">
-        <div id="seconds" class="numbers">0</div>seconds
+        <div id="seconds"class="numbers">0</div>seconds
       </div>
     </div>
   </div>
@@ -73,29 +78,28 @@
     const targetDate = new Date('July 1, 2026 00:00:00').getTime();
 
     function updateTimer() {
-      const now = new Date().getTime();
+      const now  = Date.now();
       const diff = targetDate - now;
 
       if (diff <= 0) {
-        document.getElementById("days").textContent = "0";
-        document.getElementById("hours").textContent = "0";
-        document.getElementById("minutes").textContent = "0";
-        document.getElementById("seconds").textContent = "0";
+        ['days','hours','minutes','seconds'].forEach(id =>
+          document.getElementById(id).textContent = '0'
+        );
         return;
       }
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-      document.getElementById("days").textContent = days;
-      document.getElementById("hours").textContent = hours;
+      document.getElementById("days").textContent    = days;
+      document.getElementById("hours").textContent   = hours;
       document.getElementById("minutes").textContent = minutes;
       document.getElementById("seconds").textContent = seconds;
     }
 
-    updateTimer(); // initial call
+    updateTimer();                // initial render
     setInterval(updateTimer, 1000);
   </script>
 </body>
