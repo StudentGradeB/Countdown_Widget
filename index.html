@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="color-scheme" content="dark" />
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:900" rel="stylesheet">
   <title>Countdown Timer - Dark</title>
   <style>
@@ -10,17 +11,19 @@
       margin: 0;
       padding: 0;
       background-color: #1e1e1e; /* Dark background */
-      font-family: 'Lato', sans-serif;
       height: 100%;
       width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
+      overflow: hidden;
+      color: white;
+      font-family: 'Lato', sans-serif;
     }
 
     #widget-container {
-      transform: scale(0.9); /* Adjust size if needed */
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: scale(0.9); /* resize control */
       transform-origin: top center;
     }
 
@@ -95,8 +98,7 @@
     };
 
     setInterval(updateTimer, 1000);
-    updateTimer(); // initial call
+    updateTimer();
   </script>
 </body>
 </html>
-
