@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="color-scheme" content="dark" />
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:900" rel="stylesheet">
-  <title>Countdown Timer</title>
+  <title>Countdown Timer - Dark</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      background-color: #1e1e1e; /* solid dark background */
-      color: white;
+      background-color: #1e1e1e; /* True dark background */
+      color: #fff;
       font-family: 'Lato', sans-serif;
       height: 100%;
       width: 100%;
@@ -20,11 +20,15 @@
       align-items: center;
     }
 
+    #widget-container {
+      transform: scale(0.9); /* Adjust this value to resize widget */
+      transform-origin: top center;
+    }
+
     #timer {
       text-align: center;
       text-transform: uppercase;
-      font-size: 0.7em;
-      letter-spacing: 5px;
+      letter-spacing: 2px;
     }
 
     .days, .hours, .minutes, .seconds {
@@ -35,44 +39,33 @@
       margin: 5px;
     }
 
-    .days { background: #EF2F3C; }
-    .hours { background: #333333; }
-    .minutes { background: #276FBF; }
-    .seconds { background: #F0A202; }
+    .days { background: #EF2F3C; color: #ffffff; }
+    .hours { background: #333333; color: #ffffff; }
+    .minutes { background: #276FBF; color: #ffffff; }
+    .seconds { background: #F0A202; color: #ffffff; }
 
     .numbers {
       font-family: 'Montserrat', sans-serif;
-      color: white;
       font-size: 3em;
       margin-bottom: 5px;
-    }
-
-    /* Optional: Responsive scaling for small embeds */
-    @media (max-width: 500px) {
-      .days, .hours, .minutes, .seconds {
-        width: 70px;
-        padding: 10px;
-      }
-
-      .numbers {
-        font-size: 2em;
-      }
     }
   </style>
 </head>
 <body>
-  <div id="timer">
-    <div class="days">
-      <div id="days" class="numbers">0</div>days
-    </div>
-    <div class="hours">
-      <div id="hours" class="numbers">0</div>hours
-    </div>
-    <div class="minutes">
-      <div id="minutes" class="numbers">0</div>minutes
-    </div>
-    <div class="seconds">
-      <div id="seconds" class="numbers">0</div>seconds
+  <div id="widget-container">
+    <div id="timer">
+      <div class="days">
+        <div id="days" class="numbers">0</div>days
+      </div>
+      <div class="hours">
+        <div id="hours" class="numbers">0</div>hours
+      </div>
+      <div class="minutes">
+        <div id="minutes" class="numbers">0</div>minutes
+      </div>
+      <div class="seconds">
+        <div id="seconds" class="numbers">0</div>seconds
+      </div>
     </div>
   </div>
 
@@ -103,7 +96,7 @@
     }
 
     updateTimer(); // initial call
-    setInterval(updateTimer, 1000); // update every second
+    setInterval(updateTimer, 1000);
   </script>
 </body>
 </html>
