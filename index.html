@@ -5,32 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="color-scheme" content="dark" />
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:900" rel="stylesheet">
-  <title>Countdown Timer - Dark</title>
+  <title>Countdown Timer</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      background-color: #1e1e1e; /* Dark background */
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
+      background-color: #1e1e1e; /* solid dark background */
       color: white;
       font-family: 'Lato', sans-serif;
-    }
-
-    #widget-container {
-      height: 100vh;
+      height: 100%;
+      width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      transform: scale(0.9); /* resize control */
-      transform-origin: top center;
     }
 
     #timer {
       text-align: center;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      font-size: 0.7em;
+      letter-spacing: 5px;
     }
 
     .days, .hours, .minutes, .seconds {
@@ -41,40 +35,51 @@
       margin: 5px;
     }
 
-    .days { background: #EF2F3C; color: #ffffff; }
-    .hours { background: #333333; color: #ffffff; }
-    .minutes { background: #276FBF; color: #ffffff; }
-    .seconds { background: #F0A202; color: #ffffff; }
+    .days { background: #EF2F3C; }
+    .hours { background: #333333; }
+    .minutes { background: #276FBF; }
+    .seconds { background: #F0A202; }
 
     .numbers {
       font-family: 'Montserrat', sans-serif;
+      color: white;
       font-size: 3em;
       margin-bottom: 5px;
+    }
+
+    /* Optional: Responsive scaling for small embeds */
+    @media (max-width: 500px) {
+      .days, .hours, .minutes, .seconds {
+        width: 70px;
+        padding: 10px;
+      }
+
+      .numbers {
+        font-size: 2em;
+      }
     }
   </style>
 </head>
 <body>
-  <div id="widget-container">
-    <div id="timer">
-      <div class="days">
-        <div id="days" class="numbers">0</div>days
-      </div>
-      <div class="hours">
-        <div id="hours" class="numbers">0</div>hours
-      </div>
-      <div class="minutes">
-        <div id="minutes" class="numbers">0</div>minutes
-      </div>
-      <div class="seconds">
-        <div id="seconds" class="numbers">0</div>seconds
-      </div>
+  <div id="timer">
+    <div class="days">
+      <div id="days" class="numbers">0</div>days
+    </div>
+    <div class="hours">
+      <div id="hours" class="numbers">0</div>hours
+    </div>
+    <div class="minutes">
+      <div id="minutes" class="numbers">0</div>minutes
+    </div>
+    <div class="seconds">
+      <div id="seconds" class="numbers">0</div>seconds
     </div>
   </div>
 
   <script>
     const targetDate = new Date('July 1, 2026 00:00:00').getTime();
 
-    const updateTimer = () => {
+    function updateTimer() {
       const now = new Date().getTime();
       const diff = targetDate - now;
 
@@ -95,10 +100,10 @@
       document.getElementById("hours").textContent = hours;
       document.getElementById("minutes").textContent = minutes;
       document.getElementById("seconds").textContent = seconds;
-    };
+    }
 
-    setInterval(updateTimer, 1000);
-    updateTimer();
+    updateTimer(); // initial call
+    setInterval(updateTimer, 1000); // update every second
   </script>
 </body>
 </html>
